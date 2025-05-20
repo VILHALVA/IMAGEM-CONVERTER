@@ -10,7 +10,7 @@ ctk.set_default_color_theme("blue")
 
 app = ctk.CTk()
 app.title("IMAGEM CONVERTER")
-app.geometry("500x450")
+app.geometry("600x600")
 
 image_path = ""
 
