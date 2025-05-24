@@ -1,30 +1,43 @@
 # IMAGEM CONVERTER
-👨‍🏫USE ESSE APP PARA REMOVER O FUNDO DAS SUAS FOTOS E CONVERTER PARA DIVERSOS FORMATOS.
+👨‍🏫USE ESSE APP PARA REMOVER O FUNDO DAS SUAS FOTOS E/OU CONVERTER PARA DIVERSOS FORMATOS.
 
 <img src="./IMAGENS/FOTO_01.png" align="center" width="500"> <br>
 <img src="./IMAGENS/FOTO_02.png" align="center" width="500"> <br>
+<img src="./IMAGENS/FOTO_03.png" align="center" width="500"> <br>
 
 ## DESCRIÇÃO:
-Este aplicativo é uma ferramenta para converter imagens em diferentes formatos e, opcionalmente, remover o fundo das imagens. Desenvolvido com a biblioteca `customtkinter`, ele permite ao usuário selecionar uma imagem, escolher o formato de saída e decidir se o fundo da imagem deve ser removido ou não.
+Este aplicativo é uma ferramenta para **converter várias imagens** em diferentes formatos e, opcionalmente, **remover o fundo** das imagens. Desenvolvido com a biblioteca `customtkinter`, ele possui uma interface moderna e intuitiva que permite ao usuário:
+
+* Selecionar um diretório com imagens.
+* Escolher o formato de conversão.
+* Optar pela remoção de fundo.
+* Acompanhar o progresso da conversão com barra visual e status detalhado.
 
 ## FUNCIONALIDADES:
-1. **Seleção de Imagem**:
-   - Permite ao usuário selecionar uma imagem do sistema de arquivos para processamento.
+* Permite ao usuário escolher uma **pasta contendo imagens** para processamento em lote.
 
-2. **Conversão de Formato**:
-   - Oferece opções para converter a imagem selecionada para diferentes formatos:
-     - **PADRÃO**: Mantém o formato original da imagem.
-     - **ICO**: Formato de ícone.
-     - **PNG**: Formato de imagem com suporte a transparência.
-     - **JPG/JPEG**: Formato de imagem comum sem suporte a transparência.
+* Converte as imagens para os seguintes formatos:
+  * **PADRÃO**: Mantém o formato original.
+  * **ICO**: Ícones.
+  * **PNG**: Suporta transparência.
+  * **JPG / JPEG**: Formatos populares, sem suporte à transparência.
 
-3. **Remoção de Fundo**:
-   - Permite ao usuário escolher se deseja remover o fundo da imagem selecionada:
-     - **SIM**: Remove o fundo da imagem.
-     - **NÃO**: Mantém o fundo original da imagem.
+* **Remoção de Fundo (Opcional):**
+  * **SIM**: Remove o fundo da imagem automaticamente.
+  * **NÃO**: Mantém o fundo original.
 
-4. **Salvar Imagem Convertida**:
-   - Salva a imagem convertida no formato escolhido com o sufixo "_CONVERTIDO" no mesmo diretório da imagem original.
+* **Interface com Progresso:**
+   * Barra de progresso animada.
+   * Contador de imagens processadas.
+   * Exibição percentual.
+   * Caixa de status exibindo o nome (com extensão) de cada imagem convertida ou mensagens de erro.
+
+* **Saída Organizada:**
+   * As imagens convertidas são salvas em uma nova pasta dentro do diretório original, com nome no formato:
+
+   ```
+   CONVERTIDOS_<FORMATO>
+   ```
 
 ## EXECUTANDO ESSE PROJETO:
 1. **Instalação das Dependências:**
@@ -41,24 +54,25 @@ Este aplicativo é uma ferramenta para converter imagens em diferentes formatos 
    python CODIGO.py
    ```
 
-3. **Selecionar uma Imagem**:
-   - Clique no botão **SELECIONAR** para abrir uma caixa de diálogo que permite escolher uma imagem do seu sistema de arquivos. O caminho da imagem selecionada será exibido no aplicativo.
+3. **Selecionar um Diretório**:
+   * Clique no botão **DIRETÓRIO** para abrir uma caixa de diálogo que permite escolher uma **pasta com imagens** do seu sistema de arquivos. O caminho do diretório selecionado será exibido no aplicativo.
 
 4. **Escolher o Formato de Conversão**:
-   - Em **CONVERTER PARA**, escolha o formato desejado para a imagem convertida. As opções disponíveis são:
-     - **PADRÃO**: Mantém o formato original.
-     - **ICO**: Converte para formato de ícone.
-     - **PNG**: Converte para formato PNG.
-     - **JPG/JPEG**: Converte para formato JPG ou JPEG.
+   * Em **CONVERTER PARA**, escolha o formato desejado para as imagens convertidas. As opções disponíveis são:
+
+     * **PADRÃO**: Mantém o formato original.
+     * **ICO**: Converte para formato de ícone.
+     * **PNG**: Converte para formato PNG.
+     * **JPG/JPEG**: Converte para formato JPG ou JPEG.
 
 5. **Escolher a Remoção de Fundo**:
-   - Em **REMOVER FUNDO**, selecione **SIM** se desejar remover o fundo da imagem, ou **NÃO** se preferir manter o fundo original.
+   * Em **REMOVER FUNDO**, selecione **SIM** se desejar remover o fundo das imagens, ou **NÃO** se preferir manter o fundo original.
 
-6. **Salvar a Imagem Convertida**:
-   - Clique no botão **SALVAR** para processar a imagem conforme as seleções feitas e salvar o resultado no mesmo diretório da imagem original. O botão **SALVAR** será habilitado ou desabilitado automaticamente com base nas suas escolhas.
+6. **Converter as Imagens**:
+   * Clique no botão **CONVERTER** para processar todas as imagens do diretório conforme as seleções feitas. O botão **CONVERTER** será habilitado ou desabilitado automaticamente com base nas opções escolhidas.
 
 7. **Verificar o Resultado**:
-   - Após salvar a imagem, uma mensagem de sucesso será exibida informando que a imagem foi salva corretamente com o formato escolhido.
+   * Após o processamento, uma mensagem de sucesso será exibida informando que as imagens foram salvas corretamente no diretório **CONVERTIDOS\_<FORMATO>**. A barra de progresso e a caixa de status acompanharão o andamento da conversão em tempo real.
 
 ## NÃO SABE?
 - Entendemos que para manipular arquivos em muitas linguagens, é necessário possuir conhecimento nessas áreas. Para auxiliar nesse aprendizado, oferecemos cursos gratuitos disponíveis:
@@ -68,7 +82,7 @@ Este aplicativo é uma ferramenta para converter imagens em diferentes formatos 
 * [CONFIRA MAIS CURSOS](https://github.com/VILHALVA?tab=repositories&q=+topic:CURSO)
 
 ## CREDITOS:
-- [PROJETO CRIADO PELO VILHALVA](https://github.com/VILHALVA)
+- [PROJETO BASEADO NO "AUDIO CONVERTER" ](https://github.com/VILHALVA/AUDIO-CONVERTER)
 
 
 
