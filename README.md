@@ -1,17 +1,12 @@
 # IMAGEM CONVERTER
-👨‍🏫USE ESSE APP PARA REMOVER O FUNDO DAS SUAS FOTOS E/OU CONVERTER PARA DIVERSOS FORMATOS.
+👨‍🏫USE ESTE APP PARA CONVERTER SUAS FOTOS EM DIVERSOS FORMATOS E/OU REMOVER O FUNDO DAS SUAS IMAGENS.
 
 <img src="./IMAGENS/FOTO_01.png" align="center" width="500"> <br>
 <img src="./IMAGENS/FOTO_02.png" align="center" width="500"> <br>
 <img src="./IMAGENS/FOTO_03.png" align="center" width="500"> <br>
 
 ## DESCRIÇÃO:
-Este aplicativo é uma ferramenta para **converter várias imagens** em diferentes formatos e, opcionalmente, **remover o fundo** das imagens. Desenvolvido com a biblioteca `customtkinter`, ele possui uma interface moderna e intuitiva que permite ao usuário:
-
-* Selecionar um diretório com imagens.
-* Escolher o formato de conversão.
-* Optar pela remoção de fundo.
-* Acompanhar o progresso da conversão com barra visual e status detalhado.
+Este aplicativo é uma ferramenta prática para converter múltiplas imagens em diferentes formatos e remover o fundo de forma precisa, utilizando a biblioteca **REMBG**. Com interface moderna e intuitiva desenvolvida em `customtkinter`, ele oferece uma experiência eficiente e profissional ao usuário.
 
 ## FUNCIONALIDADES:
 * Permite ao usuário escolher uma **pasta contendo imagens** para processamento em lote.
