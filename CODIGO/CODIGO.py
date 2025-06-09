@@ -4,11 +4,26 @@ from PIL import Image
 import io
 from rembg import remove
 import os
+import ctypes  
 from threading import Thread
 import glob
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
+
+def is_oculto_ou_sistema(path):
+    if os.name == "nt":  
+        try:
+            atributos = ctypes.windll.kernel32.GetFileAttributesW(str(path))
+            if atributos == -1:
+                return False
+            FILE_ATTRIBUTE_HIDDEN = 0x2
+            FILE_ATTRIBUTE_SYSTEM = 0x4
+            return bool(atributos & (FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM))
+        except Exception:
+            return False
+    else: 
+        return os.path.basename(path).startswith(".")
 
 class ImageConverterApp:
     def __init__(self, root):
@@ -102,8 +117,21 @@ class ImageConverterApp:
 
         image_extensions = ['*.png', '*.jpg', '*.jpeg', '*.bmp', '*.webp']
         image_files = []
+
         for ext in image_extensions:
-            image_files.extend(glob.glob(os.path.join(input_dir, ext)))
+            files = glob.glob(os.path.join(input_dir, ext))
+            for file in files:
+                basename = os.path.basename(file).lower()
+                if (
+                    is_oculto_ou_sistema(file) or
+                    'folder' in basename or
+                    'cover' in basename or
+                    'albumart' in basename or
+                    'thumb' in basename or
+                    'artwork' in basename
+                ):
+                    continue
+                image_files.append(file)
 
         if not image_files:
             self.append_status("Nenhuma imagem encontrada no diretório!\n")
