@@ -76,9 +76,9 @@ Este aplicativo é uma ferramenta prática para converter múltiplas imagens em 
 * [SAIBA MAIS SOBRE O "REMBR"](https://github.com/danielgatis/rembg)
 * [CONFIRA MAIS CURSOS](https://github.com/VILHALVA?tab=repositories&q=+topic:CURSO)
 
-## CREDITOS:
-- [PROJETO BASEADO NO "AUDIO CONVERTER" ](https://github.com/VILHALVA/AUDIO-CONVERTER)
-
+## CREDITOS E MAIS:
+- [PROJETO BASEADO NO "AUDIO CONVERTER"](https://github.com/VILHALVA/AUDIO-CONVERTER)
+- [CLIQUE AQUI PARA VER O HISTÓRICO DE ATUALIZAÇÕES](./UPDATES.md)
 
 
 
