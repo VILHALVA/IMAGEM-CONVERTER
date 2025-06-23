@@ -4,6 +4,7 @@
 ---
 
 ## VERSÃO 1.1 - 24/05/2025:
+* ✅Adicionada barra de progresso e melhorias no status, que agora exibe o diretório, progresso e pasta final da conversão.
 * ✅Agora o usuário seleciona uma pasta em vez de arquivos individuais, e as imagens convertidas são salvas automaticamente em uma subpasta `CONVERTIDOS_<FORMATO>`.
 * ✅O botão "SALVAR" foi renomeado para "CONVERTER".
 * ✅Adicionados um campo de status e uma barra de progresso para exibir o diretório selecionado e o andamento da conversão em tempo real.
