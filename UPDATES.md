@@ -21,8 +21,9 @@
 
 ## VERSÃO 1.0 - 31/07/2024:
 **✅ Aplicativo lançado oficialmente com o nome `IMAGEM PARA CONVERSAO`, desenvolvido com `Tkinter`:**
-    * 🔹A interface conta com o botão `SELECIONAR` para escolher o diretório, e logo abaixo é exibido um `Label` mostrando o caminho selecionado.
-    * 🔹Em seguida, há os botões de opção (radio buttons) para selecionar o formato de conversão em **"CONVERTER PARA:"**, com as opções: `PADRÃO`, `ICO`, `PNG`, `JPG` e `JPEG`.
-    * 🔹Abaixo disso, há também radio buttons com as opções `SIM` e `NÃO` para que o usuário decida se deseja remover o fundo da imagem selecionada (função realizada com a biblioteca `rembg`).
-    * 🔹Por fim, a seção de `footer` foi adicionada, exibindo o nome do criador e o username do GitHub.
+- 🔹 A interface conta com o botão `SELECIONAR` para escolher o diretório, e logo abaixo é exibido um `Label` mostrando o caminho selecionado.  
+- 🔹 Em seguida, há os botões de opção (radio buttons) para selecionar o formato de conversão em **"CONVERTER PARA:"**, com as opções: `PADRÃO`, `ICO`, `PNG`, `JPG` e `JPEG`.  
+- 🔹 Abaixo disso, há também radio buttons com as opções `SIM` e `NÃO` para que o usuário decida se deseja remover o fundo da imagem selecionada (função realizada com a biblioteca `rembg`).  
+- 🔹 Por fim, a seção de `footer` foi adicionada, exibindo o nome do criador e o username do GitHub.
+
 
