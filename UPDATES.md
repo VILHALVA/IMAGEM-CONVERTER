@@ -10,7 +10,7 @@
 * ✅O botão "SALVAR" foi renomeado para "CONVERTER".
 * ✅Adicionados um campo de status e uma barra de progresso para exibir o diretório selecionado e o andamento da conversão em tempo real.
 * ✅A interface inicia com zoom total e suporte a rolagem vertical.
-* ✅O layout foi reorganizado, com os campos "CONVERTER PARA" e "REMOVER FUNDO" em containers próprios, e o footer foi removido.
+* ✅O layout foi reorganizado, com os campos "CONVERTER PARA" e "REMOVER FUNDO" em containers próprios, e o `footer` foi removido.
 ---
 
 ## VERSÃO 1.1 - 20/05/2025:
