@@ -40,9 +40,6 @@ class ImageConverterApp:
 
         ctk.CTkLabel(self.scrollable_frame, text="CONVERSOR DE IMAGENS", font=("Arial", 20)).pack(pady=10)
 
-        self.select_button = ctk.CTkButton(self.scrollable_frame, text="DIRETÓRIO", command=self.select_directory)
-        self.select_button.pack(pady=10)
-
         self.format_container = ctk.CTkFrame(self.scrollable_frame, border_width=2, corner_radius=10)
         self.format_container.pack(pady=5, padx=20, fill="x")
 
@@ -50,24 +47,30 @@ class ImageConverterApp:
         self.format_frame = ctk.CTkFrame(self.format_container)
         self.format_frame.pack(pady=10)
 
-        options = ["PADRÃO", "ICO", "PNG", "JPG", "JPEG"]
+        options = ["PADRÃO", "JPEG", "JPG", "PNG", "ICO"]
         for option in options:
             ctk.CTkRadioButton(self.format_frame, text=option, variable=self.format_var, value=option, command=self.update_convert_button_state).pack(side="left", padx=5)
 
         self.remove_bg_container = ctk.CTkFrame(self.scrollable_frame, border_width=2, corner_radius=10)
         self.remove_bg_container.pack(pady=5, padx=20, fill="x")
 
-        ctk.CTkLabel(self.remove_bg_container, text="REMOVER FUNDO:").pack(pady=(10, 0))
+        ctk.CTkLabel(self.remove_bg_container, text="REMOVER FUNDO?").pack(pady=(10, 0))
         self.remove_bg_frame = ctk.CTkFrame(self.remove_bg_container)
         self.remove_bg_frame.pack(pady=10)
 
         ctk.CTkRadioButton(self.remove_bg_frame, text="SIM", variable=self.remove_bg_var, value="SIM", command=self.update_convert_button_state).pack(side="left", padx=10)
         ctk.CTkRadioButton(self.remove_bg_frame, text="NÃO", variable=self.remove_bg_var, value="NÃO", command=self.update_convert_button_state).pack(side="left", padx=10)
 
-        self.convert_button = ctk.CTkButton(self.scrollable_frame, text="CONVERTER", command=self.start_conversion, state="disabled")
-        self.convert_button.pack(pady=10)
+        self.button_frame = ctk.CTkFrame(self.scrollable_frame)
+        self.button_frame.pack(pady=10)
 
-        self.status_textbox = ctk.CTkTextbox(self.scrollable_frame, width=500, height=120)
+        self.select_button = ctk.CTkButton(self.button_frame, text="DIRETÓRIO", command=self.select_directory)
+        self.select_button.pack(side="left", padx=5)
+
+        self.convert_button = ctk.CTkButton(self.button_frame, text="CONVERTER", command=self.start_conversion, state="disabled")
+        self.convert_button.pack(side="left", padx=5)
+
+        self.status_textbox = ctk.CTkTextbox(self.scrollable_frame, width=500, height=180)
         self.status_textbox.pack(pady=10)
         self.status_textbox.configure(state='disabled')
 
@@ -115,7 +118,7 @@ class ImageConverterApp:
         output_dir = os.path.join(input_dir, f"CONVERTIDOS_{output_format or 'PADRAO'}")
         os.makedirs(output_dir, exist_ok=True)
 
-        image_extensions = ['*.png', '*.jpg', '*.jpeg', '*.bmp', '*.webp']
+        image_extensions = ['*.jpg', '*.jpeg', '*.png', '*.ico', '*.bmp', '*.webp']
         image_files = []
 
         for ext in image_extensions:

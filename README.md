@@ -1,5 +1,5 @@
 # IMAGEM CONVERTER
-👨‍🏫USE ESTE APP PARA CONVERTER SUAS FOTOS EM DIVERSOS FORMATOS E/OU REMOVER O FUNDO DAS SUAS IMAGENS.
+👨‍🏫USE ESTE APP PARA CONVERTER SUAS FOTOS EM DIVERSOS FORMATOS (PARA: "PADRÃO", "JPEG", "JPG", "PNG" E "ICO") E/OU REMOVER O FUNDO DAS SUAS IMAGENS.
 
 <img src="./IMAGENS/FOTO_01.png" align="center" width="500"> <br>
 <img src="./IMAGENS/FOTO_02.png" align="center" width="500"> <br>
@@ -13,9 +13,9 @@ Este aplicativo é uma ferramenta prática para converter múltiplas imagens em 
 
 * Converte as imagens para os seguintes formatos:
   * **PADRÃO**: Mantém o formato original.
-  * **ICO**: Ícones.
+  * **JPEG/JPG**: Formatos populares, sem suporte à transparência.
   * **PNG**: Suporta transparência.
-  * **JPG / JPEG**: Formatos populares, sem suporte à transparência.
+  * **ICO**: Ícones.
 
 * **Remoção de Fundo (Opcional):**
   * **SIM**: Remove o fundo da imagem automaticamente.
@@ -53,15 +53,15 @@ Este aplicativo é uma ferramenta prática para converter múltiplas imagens em 
    * Clique no botão **DIRETÓRIO** para abrir uma caixa de diálogo que permite escolher uma **pasta com imagens** do seu sistema de arquivos. O caminho do diretório selecionado será exibido no aplicativo.
 
 4. **Escolher o Formato de Conversão**:
-   * Em **CONVERTER PARA**, escolha o formato desejado para as imagens convertidas. As opções disponíveis são:
+   * Em **CONVERTER PARA:**, escolha o formato desejado para as imagens convertidas. As opções disponíveis são:
 
      * **PADRÃO**: Mantém o formato original.
-     * **ICO**: Converte para formato de ícone.
+     * **JPEG/JPG**: Converte para formato `JPEG` ou `JPG`.
      * **PNG**: Converte para formato PNG.
-     * **JPG/JPEG**: Converte para formato JPG ou JPEG.
+     * **ICO**: Converte para formato de ícone.
 
 5. **Escolher a Remoção de Fundo**:
-   * Em **REMOVER FUNDO**, selecione **SIM** se desejar remover o fundo das imagens, ou **NÃO** se preferir manter o fundo original.
+   * Em **REMOVER FUNDO?**, selecione **SIM** se desejar remover o fundo das imagens, ou **NÃO** se preferir manter o fundo original.
 
 6. **Converter as Imagens**:
    * Clique no botão **CONVERTER** para processar todas as imagens do diretório conforme as seleções feitas. O botão **CONVERTER** será habilitado ou desabilitado automaticamente com base nas opções escolhidas.
