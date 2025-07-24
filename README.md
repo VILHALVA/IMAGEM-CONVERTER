@@ -57,7 +57,7 @@ Este aplicativo é uma ferramenta prática para converter múltiplas imagens em 
 
      * **PADRÃO**: Mantém o formato original.
      * **JPEG/JPG**: Converte para formato `JPEG` ou `JPG`.
-     * **PNG**: Converte para formato PNG.
+     * **PNG**: Converte para formato `PNG`.
      * **ICO**: Converte para formato de ícone.
 
 5. **Escolher a Remoção de Fundo**:
