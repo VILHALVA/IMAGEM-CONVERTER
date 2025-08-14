@@ -38,7 +38,7 @@ class ImageConverterApp:
         self.scrollable_frame = ctk.CTkScrollableFrame(root, width=700, height=700)
         self.scrollable_frame.pack(padx=20, pady=20, fill="both", expand=True)
 
-        ctk.CTkLabel(self.scrollable_frame, text="CONVERSOR DE IMAGENS", font=("Arial", 20)).pack(pady=10)
+        ctk.CTkLabel(self.scrollable_frame, text="CONVERSOR DE IMAGENS", font=("Arial", 30, "bold")).pack(pady=10)
 
         self.format_container = ctk.CTkFrame(self.scrollable_frame, border_width=2, corner_radius=10)
         self.format_container.pack(pady=5, padx=20, fill="x")
@@ -70,7 +70,7 @@ class ImageConverterApp:
         self.convert_button = ctk.CTkButton(self.button_frame, text="CONVERTER", command=self.start_conversion, state="disabled")
         self.convert_button.pack(side="left", padx=5)
 
-        self.status_textbox = ctk.CTkTextbox(self.scrollable_frame, width=500, height=180)
+        self.status_textbox = ctk.CTkTextbox(self.scrollable_frame, width=500, height=165)
         self.status_textbox.pack(pady=10)
         self.status_textbox.configure(state='disabled')
 
@@ -155,11 +155,11 @@ class ImageConverterApp:
                 fmt_map = {"ICO": "ICO", "PNG": "PNG", "JPG": "JPEG", "JPEG": "JPEG"}
                 fmt = fmt_map.get(selected_format, os.path.splitext(image_path)[1][1:].upper())
 
-                if fmt in ["JPEG"] and img.mode in ["RGBA", "LA"]:
+                if fmt in ["JPEG" or "JPG"] and img.mode in ["RGBA", "LA"]:
                     img = img.convert("RGB")
 
                 filename = os.path.splitext(os.path.basename(image_path))[0]
-                ext_map = {"ICO": ".ico", "PNG": ".png", "JPEG": ".jpg"}
+                ext_map = {"JPEG": ".jpeg", "JPG": ".jpg" , "PNG": ".png", "ICO": ".ico"}
                 new_ext = ext_map.get(fmt, os.path.splitext(image_path)[1])
                 new_filename = filename + new_ext
 
