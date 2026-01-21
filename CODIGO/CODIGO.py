@@ -4,15 +4,16 @@ from PIL import Image
 import io
 from rembg import remove
 import os
-import ctypes  
+import ctypes
 from threading import Thread
 import glob
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
+
 def is_oculto_ou_sistema(path):
-    if os.name == "nt":  
+    if os.name == "nt":
         try:
             atributos = ctypes.windll.kernel32.GetFileAttributesW(str(path))
             if atributos == -1:
@@ -22,14 +23,15 @@ def is_oculto_ou_sistema(path):
             return bool(atributos & (FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM))
         except Exception:
             return False
-    else: 
+    else:
         return os.path.basename(path).startswith(".")
+
 
 class ImageConverterApp:
     def __init__(self, root):
         self.root = root
         self.root.title("IMAGEM CONVERTER")
-        
+
         self.selected_directory = ""
 
         self.format_var = ctk.StringVar(value="PADRÃO")
@@ -38,7 +40,11 @@ class ImageConverterApp:
         self.scrollable_frame = ctk.CTkScrollableFrame(root, width=700, height=700)
         self.scrollable_frame.pack(padx=20, pady=20, fill="both", expand=True)
 
-        ctk.CTkLabel(self.scrollable_frame, text="CONVERSOR DE IMAGENS", font=("Arial", 30, "bold")).pack(pady=10)
+        ctk.CTkLabel(
+            self.scrollable_frame,
+            text="CONVERSOR DE IMAGENS",
+            font=("Arial", 30, "bold")
+        ).pack(pady=10)
 
         self.format_container = ctk.CTkFrame(self.scrollable_frame, border_width=2, corner_radius=10)
         self.format_container.pack(pady=5, padx=20, fill="x")
@@ -49,7 +55,13 @@ class ImageConverterApp:
 
         options = ["PADRÃO", "JPEG", "JPG", "PNG", "ICO"]
         for option in options:
-            ctk.CTkRadioButton(self.format_frame, text=option, variable=self.format_var, value=option, command=self.update_convert_button_state).pack(side="left", padx=5)
+            ctk.CTkRadioButton(
+                self.format_frame,
+                text=option,
+                variable=self.format_var,
+                value=option,
+                command=self.update_convert_button_state
+            ).pack(side="left", padx=5)
 
         self.remove_bg_container = ctk.CTkFrame(self.scrollable_frame, border_width=2, corner_radius=10)
         self.remove_bg_container.pack(pady=5, padx=20, fill="x")
@@ -58,21 +70,43 @@ class ImageConverterApp:
         self.remove_bg_frame = ctk.CTkFrame(self.remove_bg_container)
         self.remove_bg_frame.pack(pady=10)
 
-        ctk.CTkRadioButton(self.remove_bg_frame, text="SIM", variable=self.remove_bg_var, value="SIM", command=self.update_convert_button_state).pack(side="left", padx=10)
-        ctk.CTkRadioButton(self.remove_bg_frame, text="NÃO", variable=self.remove_bg_var, value="NÃO", command=self.update_convert_button_state).pack(side="left", padx=10)
+        ctk.CTkRadioButton(
+            self.remove_bg_frame,
+            text="SIM",
+            variable=self.remove_bg_var,
+            value="SIM",
+            command=self.update_convert_button_state
+        ).pack(side="left", padx=10)
+
+        ctk.CTkRadioButton(
+            self.remove_bg_frame,
+            text="NÃO",
+            variable=self.remove_bg_var,
+            value="NÃO",
+            command=self.update_convert_button_state
+        ).pack(side="left", padx=10)
 
         self.button_frame = ctk.CTkFrame(self.scrollable_frame)
         self.button_frame.pack(pady=10)
 
-        self.select_button = ctk.CTkButton(self.button_frame, text="DIRETÓRIO", command=self.select_directory)
+        self.select_button = ctk.CTkButton(
+            self.button_frame,
+            text="DIRETÓRIO",
+            command=self.select_directory
+        )
         self.select_button.pack(side="left", padx=5)
 
-        self.convert_button = ctk.CTkButton(self.button_frame, text="CONVERTER", command=self.start_conversion, state="disabled")
+        self.convert_button = ctk.CTkButton(
+            self.button_frame,
+            text="CONVERTER",
+            command=self.start_conversion,
+            state="disabled"
+        )
         self.convert_button.pack(side="left", padx=5)
 
         self.status_textbox = ctk.CTkTextbox(self.scrollable_frame, width=500, height=165)
         self.status_textbox.pack(pady=10)
-        self.status_textbox.configure(state='disabled')
+        self.status_textbox.configure(state="disabled")
 
         self.progress_frame = ctk.CTkFrame(self.scrollable_frame)
         self.progress_frame.pack(pady=(0, 5), fill="x", padx=10)
@@ -96,7 +130,9 @@ class ImageConverterApp:
             self.update_convert_button_state()
 
     def update_convert_button_state(self):
-        if self.selected_directory and (self.format_var.get() != "PADRÃO" or self.remove_bg_var.get() == "SIM"):
+        if self.selected_directory and (
+            self.format_var.get() != "PADRÃO" or self.remove_bg_var.get() == "SIM"
+        ):
             self.convert_button.configure(state="normal")
         else:
             self.convert_button.configure(state="disabled")
@@ -106,32 +142,29 @@ class ImageConverterApp:
         self.progress_bar.set(0)
         self.progress_count_label.configure(text="0/0")
         self.progress_percent_label.configure(text="0%")
-        Thread(target=self.convert_images).start()
+        Thread(target=self.convert_images, daemon=True).start()
 
     def convert_images(self):
         input_dir = self.selected_directory
         selected_format = self.format_var.get()
         remove_bg = self.remove_bg_var.get() == "SIM"
 
-        output_format = selected_format if selected_format != "PADRÃO" else None
-
-        output_dir = os.path.join(input_dir, f"CONVERTIDOS_{output_format or 'PADRAO'}")
+        output_dir = os.path.join(input_dir, f"CONVERTIDOS_{selected_format}")
         os.makedirs(output_dir, exist_ok=True)
 
         image_extensions = ['*.jpg', '*.jpeg', '*.png', '*.ico', '*.bmp', '*.webp']
         image_files = []
 
         for ext in image_extensions:
-            files = glob.glob(os.path.join(input_dir, ext))
-            for file in files:
+            for file in glob.glob(os.path.join(input_dir, ext)):
                 basename = os.path.basename(file).lower()
                 if (
-                    is_oculto_ou_sistema(file) or
-                    'folder' in basename or
-                    'cover' in basename or
-                    'albumart' in basename or
-                    'thumb' in basename or
-                    'artwork' in basename
+                    is_oculto_ou_sistema(file)
+                    or 'folder' in basename
+                    or 'cover' in basename
+                    or 'albumart' in basename
+                    or 'thumb' in basename
+                    or 'artwork' in basename
                 ):
                     continue
                 image_files.append(file)
@@ -141,58 +174,71 @@ class ImageConverterApp:
             return
 
         total = len(image_files)
+
         for idx, image_path in enumerate(image_files):
             try:
                 with open(image_path, "rb") as f:
                     image_data = f.read()
-                
+
                 if remove_bg:
-                    output = remove(image_data)
-                    img = Image.open(io.BytesIO(output))
+                    image_data = remove(image_data)
+                    img = Image.open(io.BytesIO(image_data))
                 else:
                     img = Image.open(image_path)
 
-                fmt_map = {"ICO": "ICO", "PNG": "PNG", "JPG": "JPEG", "JPEG": "JPEG"}
-                fmt = fmt_map.get(selected_format, os.path.splitext(image_path)[1][1:].upper())
+                filename = os.path.splitext(os.path.basename(image_path))[0]
 
-                if fmt in ["JPEG" or "JPG"] and img.mode in ["RGBA", "LA"]:
+                if selected_format == "JPG":
+                    fmt = "JPEG"
+                    new_ext = ".jpg"
+                elif selected_format == "JPEG":
+                    fmt = "JPEG"
+                    new_ext = ".jpeg"
+                elif selected_format == "PNG":
+                    fmt = "PNG"
+                    new_ext = ".png"
+                elif selected_format == "ICO":
+                    fmt = "ICO"
+                    new_ext = ".ico"
+                else:
+                    fmt = img.format
+                    new_ext = os.path.splitext(image_path)[1]
+
+                if fmt == "JPEG" and img.mode in ("RGBA", "LA"):
                     img = img.convert("RGB")
 
-                filename = os.path.splitext(os.path.basename(image_path))[0]
-                ext_map = {"JPEG": ".jpeg", "JPG": ".jpg" , "PNG": ".png", "ICO": ".ico"}
-                new_ext = ext_map.get(fmt, os.path.splitext(image_path)[1])
-                new_filename = filename + new_ext
-
-                output_file = os.path.join(output_dir, new_filename)
+                output_file = os.path.join(output_dir, filename + new_ext)
                 img.save(output_file, format=fmt)
-                self.append_status(f"Convertido: {new_filename} \n")
-                
-                progress_value = (idx + 1) / total
-                self.progress_bar.set(progress_value)
+
+                self.append_status(f"Convertido: {filename + new_ext}\n")
+
+                progress = (idx + 1) / total
+                self.progress_bar.set(progress)
                 self.progress_count_label.configure(text=f"{idx + 1}/{total}")
-                self.progress_percent_label.configure(text=f"{int(progress_value * 100)}%")
+                self.progress_percent_label.configure(text=f"{int(progress * 100)}%")
 
             except Exception as e:
-                self.append_status(f"Erro ao converter {image_path}: {str(e)}\n")
+                self.append_status(f"Erro ao converter {image_path}: {e}\n")
 
         self.append_status(f"\nConversão concluída!\nArquivos salvos em: {output_dir}\n")
-        messagebox.showinfo("Finalizado", f"Todas as imagens foram convertidas com sucesso!")
+        messagebox.showinfo("Finalizado", "Todas as imagens foram convertidas com sucesso!")
 
     def clear_status(self, keep_directory=False):
         text = self.status_textbox.get("1.0", "end")
-        self.status_textbox.configure(state='normal')
+        self.status_textbox.configure(state="normal")
         self.status_textbox.delete("1.0", "end")
         if keep_directory:
             for line in text.splitlines():
                 if line.startswith("Diretório selecionado"):
                     self.status_textbox.insert("end", line + "\n")
-        self.status_textbox.configure(state='disabled')
+        self.status_textbox.configure(state="disabled")
 
     def append_status(self, message):
-        self.status_textbox.configure(state='normal')
+        self.status_textbox.configure(state="normal")
         self.status_textbox.insert("end", message)
         self.status_textbox.see("end")
-        self.status_textbox.configure(state='disabled')
+        self.status_textbox.configure(state="disabled")
+
 
 if __name__ == "__main__":
     root = ctk.CTk()
